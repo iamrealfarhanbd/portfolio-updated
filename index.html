@@ -15,39 +15,52 @@
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            /* New gradient background for the entire body, matching Rectangle 1.png */
-            background: linear-gradient(83.48deg, #0D0D1A, #4B0082, #9370DB); /* Gradient from Rectangle 1.png */
+            /* New sophisticated gradient background for the entire body */
+            background: linear-gradient(83.48deg, #050510 0%, #100C2A 50%, #1F0D36 100%);
             background-size: 400% 400%; /* Needed for animation */
             animation: gradient 15s infinite; /* Apply animation to body as well */
         }
 
-        /* Gradient background for sections with right-to-left motion (user's specified) */
+        /* Gradient background for sections with right-to-left motion */
         .gradient-bg {
-            /* Using the same new colors for consistency */
-            background: linear-gradient(83.48deg, #0D0D1A, #4B0082, #9370DB); /* Gradient from Rectangle 1.png */
+            /* Using the same new colors for consistency across body and sections */
+            background: linear-gradient(83.48deg, #050510 0%, #100C2A 50%, #1F0D36 100%);
             background-size: 400% 400%; /* Wider for horizontal movement */
             animation: gradient 15s infinite; /* Slower, linear, continuous right-to-left */
         }
 
-        /* Keyframes for continuous right-to-left gradient animation (user's specified) */
+        /* Keyframes for continuous right-to-left gradient animation */
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Card border styling without rotation */
+        /* Glassmorphism and Animated Gradient Border for Cards */
         .animated-border-card {
             position: relative;
             overflow: hidden;
-            background-color: #1a1a2e; /* Darker card background */
+            /* Changed background-color to match hero-code-showcase */
+            background-color: #1a1a2e; /* Solid background matching code showcase */
+            backdrop-filter: blur(15px); /* Stronger frosted glass effect */
+            -webkit-backdrop-filter: blur(15px); /* Safari support */
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Glassmorphism shadow */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            border: 1px solid rgba(139, 92, 246, 0.3); /* Subtle purple border */
+            padding: 1.5rem; /* Ensure padding is consistent */
+            display: flex; /* Enable flexbox for uniform card content */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: space-between; /* Distribute space to push content/buttons */
+            /* Removed animated border, using a very subtle static border for structure */
+            border: 1px solid rgba(139, 92, 246, 0.1); /* Subtle purple border */
+            z-index: 10; /* Ensure card content is above any potential pseudo-element */
         }
+
+        /* Removed ::before pseudo-element for animated border glow */
 
         .animated-border-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* More prominent shadow on hover */
         }
 
         /* Specific styles for the hero code showcase container */
@@ -102,12 +115,6 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-        @media (min-width: 1280px) {
-            .skills-grid {
-                grid-template-columns: repeat(4, 1fr); /* More columns for larger screens */
-            }
-        }
-
         /* Skills card specific styling */
         .skills-card-icon {
             background: linear-gradient(45deg, #8b5cf6, #ec4899); /* Gradient icon background */
@@ -122,6 +129,14 @@
             padding: 0.75rem;
             border-radius: 0.5rem;
             margin-top: 1rem;
+            flex-grow: 1; /* Allow the list to take available space for height uniformity */
+            overflow: auto; /* Allow scrolling if list gets too long on small screens */
+            line-height: 1.7; /* Added for better readability and appearance of bullet points */
+            padding-left: 1rem; /* Ensure consistent padding for list items */
+        }
+        .animated-border-card h4 + p { /* Style for project/document descriptions */
+            flex-grow: 1; /* Make the description take available space for height uniformity */
+            margin-bottom: 1rem; /* Add some space before buttons */
         }
 
         /* Scroll Reveal Animations */
@@ -156,6 +171,85 @@
             background-color: #7c3aed; /* Darker purple on hover */
             transform: scale(1.05);
         }
+
+        /* Document buttons styling */
+        .document-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(to right, #2563EB, #0EA5E9); /* Blue to Cyan */
+            color: white;
+        }
+        .document-button:hover {
+            background: linear-gradient(to right, #1D4ED8, #0284C7); /* Darker blue to cyan */
+            transform: translateY(-2px) scale(1.05);
+        }
+        /* Email copy button */
+        .copy-email-btn {
+            background: linear-gradient(to right, #64748B, #94A3B8); /* Slate gradient */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .copy-email-btn:hover {
+            background: linear-gradient(to right, #475569, #64748B); /* Darker slate */
+            transform: translateY(-2px);
+        }
+
+        /* Social Link Buttons - New Gradients */
+        .social-link-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .social-link-btn.linkedin {
+            background: linear-gradient(to right, #0077B5, #00A0DC);
+            color: white;
+        }
+        .social-link-btn.github {
+            background: linear-gradient(to right, #333333, #6e5494); /* Dark grey to purple */
+            color: white;
+        }
+        .social-link-btn.wordpress {
+            background: linear-gradient(to right, #21759B, #4696BF);
+            color: white;
+        }
+        .social-link-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Load More Button - New Gradient */
+        #load-more-btn {
+            background: linear-gradient(to right, #4F46E5, #8B5CF6); /* Indigo to Violet */
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+        #load-more-btn:hover {
+            background: linear-gradient(to right, #4338CA, #7C3AED); /* Darker shades */
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -169,6 +263,7 @@
                 <a href="#about" class="text-gray-300 hover:text-purple-400 transition duration-300">About</a>
                 <a href="#skills" class="text-gray-300 hover:text-purple-400 transition duration-300">Skills</a>
                 <a href="#projects" class="text-gray-300 hover:text-purple-400 transition duration-300">Projects</a>
+                <a href="#documents" class="text-gray-300 hover:text-purple-400 transition duration-300">Documents</a>
                 <a href="#contact" class="text-gray-300 hover:text-purple-400 transition duration-300">Contact</a>
             </div>
             <!-- Mobile menu button -->
@@ -186,6 +281,7 @@
             <a href="#about" class="block px-6 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">About</a>
             <a href="#skills" class="block px-6 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Skills</a>
             <a href="#projects" class="block px-6 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Projects</a>
+            <a href="#documents" class="block px-6 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Documents</a>
             <a href="#contact" class="block px-6 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Contact</a>
         </div>
     </header>
@@ -220,13 +316,13 @@
                 </div>
 
                 <div class="mt-10 flex flex-wrap justify-center gap-4">
-                    <a href="https://www.linkedin.com/in/iamrealfarhanbd/" target="_blank" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 flex items-center">
+                    <a href="https://www.linkedin.com/in/iamrealfarhanbd/" target="_blank" class="social-link-btn linkedin">
                         <i class="fab fa-linkedin mr-2"></i> LinkedIn
                     </a>
-                    <a href="https://github.com/iamrealfarhanbd" target="_blank" class="px-6 py-3 bg-gray-700 text-white font-semibold rounded-full shadow-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105 flex items-center">
+                    <a href="https://github.com/iamrealfarhanbd" target="_blank" class="social-link-btn github">
                         <i class="fab fa-github mr-2"></i> GitHub
                     </a>
-                    <a href="https://profiles.wordpress.org/iamfarhan09/" target="_blank" class="px-6 py-3 bg-blue-500 text-white font-semibold rounded-full shadow-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105 flex items-center">
+                    <a href="https://profiles.wordpress.org/iamfarhan09/" target="_blank" class="social-link-btn wordpress">
                         <i class="fab fa-wordpress mr-2"></i> WordPress Profile
                     </a>
                 </div>
@@ -238,10 +334,10 @@
             <div class="container mx-auto max-w-5xl text-center">
                 <h2 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">About Me</h2>
                 <p class="text-lg leading-relaxed text-gray-300 mb-4">
-                    A dedicated Software Engineer with over 5 years of experience in full-stack development, adept at crafting seamless digital experiences and agile solutions using JavaScript, React.js, Node.js, and PHP. I have a proven ability to lead and deliver impactful applications, enhancing user engagement and driving business growth within fast-paced, cloud-based environments.
+                    A dedicated Software Engineer with over 5 years of experience in full-stack development. I excel at transforming intricate technical challenges into agile, impactful solutions, consistently delivering seamless digital experiences and driving business growth within fast-paced, cloud-based environments.
                 </p>
                 <p class="text-lg leading-relaxed text-gray-300">
-                    My journey includes designing, developing, and maintaining over 30 educational websites, significantly improving digital learning for thousands of students and boosting user engagement. I'm passionate about continuous learning and delivering high-quality, scalable web solutions.
+                    My journey includes designing, developing, and maintaining over 30 educational websites, significantly improving digital learning for thousands of students. I've also led technical support teams, maintaining high product ratings and customer satisfaction, and consistently enhanced product functionalities through direct collaboration with development teams. I am a capable professional across any stack, committed to durable, high-quality outcomes and continuous improvement.
                 </p>
             </div>
         </section>
@@ -251,49 +347,62 @@
             <div class="container mx-auto max-w-6xl">
                 <h2 class="text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-red-500">My Skills</h2>
                 <div class="grid skills-grid gap-8">
-                    <!-- Web Development -->
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg bg-gray-800 bg-opacity-70 backdrop-blur-sm flex flex-col items-center text-center">
-                        <i class="fas fa-code skills-card-icon"></i>
-                        <h3 class="text-2xl font-semibold mb-4 text-purple-400">Web Development</h3>
-                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list">
-                            <li>HTML, CSS, JavaScript</li>
-                            <li>React.js, Angular.js, Vue.js, Next.js, TypeScript</li>
-                            <li>Node.js, Express.js, PHP</li>
-                            <li>RESTful APIs, GraphQL, Serverless Architecture (AWS Lambda)</li>
-                            <li>MongoDB, MySQL, PostgreSQL</li>
-                            <li>WordPress (Plugin/Theme Development), Shopify (App/Theme Development)</li>
-                            <li>Jest, Selenium, Postman</li>
+                    <!-- Frontend Development -->
+                    <div class="animated-border-card text-center"> <!-- Added text-center for skill cards -->
+                        <i class="fas fa-desktop skills-card-icon mx-auto"></i> <!-- Centered icon -->
+                        <h3 class="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Frontend Development</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list mx-auto pl-4"> <!-- Added pl-4 for bullet alignment -->
+                            <li>HTML, CSS, JavaScript, TypeScript</li>
+                            <li>React.js, Redux, Next.js, Angular.js, Vue.js</li>
+                            <li>Bootstrap, Tailwind CSS, Material UI</li>
                         </ul>
                     </div>
-                    <!-- Data Science & Analytics -->
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg bg-gray-800 bg-opacity-70 backdrop-blur-sm flex flex-col items-center text-center">
-                        <i class="fas fa-chart-line skills-card-icon"></i>
-                        <h3 class="text-2xl font-semibold mb-4 text-blue-400">Data Science & Analytics</h3>
-                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list">
+                    <!-- Backend Development -->
+                    <div class="animated-border-card text-center">
+                        <i class="fas fa-server skills-card-icon mx-auto"></i>
+                        <h3 class="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Backend Development</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list mx-auto pl-4">
+                            <li>Node.js, Express.js, PHP, Mongoose</li>
+                            <li>RESTful APIs, GraphQL, Serverless Architecture</li>
+                        </ul>
+                    </div>
+                    <!-- Databases & Data Management -->
+                    <div class="animated-border-card text-center">
+                        <i class="fas fa-database skills-card-icon mx-auto"></i>
+                        <h3 class="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Databases & Data Management</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list mx-auto pl-4">
+                            <li>MongoDB, MySQL, PostgreSQL, Firestore</li>
+                            <li>Hadoop, Spark, Google BigQuery</li>
+                        </ul>
+                    </div>
+                    <!-- DevOps & Cloud Platforms -->
+                    <div class="animated-border-card text-center">
+                        <i class="fas fa-cloud skills-card-icon mx-auto"></i>
+                        <h3 class="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">DevOps & Cloud Platforms</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list mx-auto pl-4">
+                            <li>Docker, Kubernetes</li>
+                            <li>CI/CD Pipelines (GitHub Actions)</li>
+                            <li>AWS Lambda, Azure ML, Google Cloud (Vertex AI)</li>
+                        </ul>
+                    </div>
+                    <!-- Data Science & Machine Learning -->
+                    <div class="animated-border-card text-center">
+                        <i class="fas fa-brain skills-card-icon mx-auto"></i>
+                        <h3 class="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Data Science & Machine Learning</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list mx-auto pl-4">
                             <li>Python (Pandas, NumPy, Scikit-learn), R, SQL, SAS</li>
                             <li>TensorFlow, PyTorch, Keras</li>
-                            <li>Hadoop, Spark</li>
-                            <li>Tableau, Power BI, Azure, Google BigQuery</li>
-                            <li>MLOps (MLflow, Kubeflow)</li>
+                            <li>Tableau, Power BI</li>
                         </ul>
                     </div>
-                    <!-- DevOps & Cloud -->
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg bg-gray-800 bg-opacity-70 backdrop-blur-sm flex flex-col items-center text-center">
-                        <i class="fas fa-cloud skills-card-icon"></i>
-                        <h3 class="text-2xl font-semibold mb-4 text-green-400">DevOps & Cloud</h3>
-                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list">
-                            <li>Docker, Kubernetes</li>
-                            <li>CI/CD Pipelines (GitHub)</li>
-                            <li>Azure ML, Google Cloud (Vertex AI)</li>
-                        </ul>
-                    </div>
-                    <!-- Agile & Methodologies -->
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg bg-gray-800 bg-opacity-70 backdrop-blur-sm flex flex-col items-center text-center">
-                        <i class="fas fa-project-diagram skills-card-icon"></i>
-                        <h3 class="text-2xl font-semibold mb-4 text-pink-400">Agile & Methodologies</h3>
-                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list">
+                    <!-- Agile & Quality Assurance -->
+                    <div class="animated-border-card text-center">
+                        <i class="fas fa-check-circle skills-card-icon mx-auto"></i>
+                        <h3 class="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Agile & Quality Assurance</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2 text-left w-full skills-card-list mx-auto pl-4">
                             <li>Scrum, Kanban, SAFe</li>
                             <li>Jira, Trello, Asana</li>
+                            <li>Jest, Selenium, Postman</li>
                         </ul>
                     </div>
                 </div>
@@ -308,112 +417,112 @@
                 <!-- WordPress Projects Subsection -->
                 <h3 class="text-3xl font-bold text-center mb-8 text-gray-200">WordPress Development</h3>
                 <p class="text-center text-lg text-gray-300 mb-10">
-                    I've developed numerous websites for UK learning industries, customizing themes and plugins to meet unique requirements for single pages, cart pages, checkout pages, and all course pages. My work consistently delivered on time and was highly appreciated.
+                    With over 5 years of expertise in WordPress, I've engineered and optimized numerous e-learning platforms for the UK industry. My work encompasses full-lifecycle theme and plugin customization, from conceptual design to robust deployment, ensuring seamless user experiences and powerful functionality for thousands of students and businesses.
                 </p>
 
                 <div id="wordpress-websites" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-                    <!-- Initial 5 Websites -->
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">Adams Academy</h4>
-                        <p class="text-gray-400 mb-4">E-learning website with custom theme development.</p>
-                        <a href="https://www.adamsacademy.com/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <!-- Initial 6 "Best" Websites -->
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Adams Academy</h4>
+                        <p class="text-gray-400">A cutting-edge e-learning platform, custom-built with bespoke theme development and significant performance enhancements to handle high user traffic effortlessly.</p>
+                        <a href="https://www.adamsacademy.com/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">John Academy (co.uk)</h4>
-                        <p class="text-gray-400 mb-4">Comprehensive e-learning platform.</p>
-                        <a href="https://www.johnacademy.co.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">John Academy (co.uk)</h4>
+                        <p class="text-gray-400">A comprehensive e-learning platform engineered for optimal user engagement and efficient content delivery, supporting thousands of active learners daily.</p>
+                        <a href="https://www.johnacademy.co.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">John Academy (org)</h4>
-                        <p class="text-gray-400 mb-4">Another e-learning portal with custom features.</p>
-                        <a href="https://www.johnacademy.org/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">John Academy (org)</h4>
+                        <p class="text-gray-400">A robust e-learning portal featuring advanced course management systems and personalized user profiles, significantly boosting weekly revisits by 70%.</p>
+                        <a href="https://www.johnacademy.org/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">iStudy.org.uk</h4>
-                        <p class="text-gray-400 mb-4">Customized e-learning solution.</p>
-                        <a href="https://www.istudy.org.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">iStudy.org.uk</h4>
+                        <p class="text-gray-400">A meticulously tailored e-learning solution with optimized cart, checkout, and course pages, designed to achieve superior conversion rates and a seamless user journey.</p>
+                        <a href="https://www.istudy.org.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">One Education</h4>
-                        <p class="text-gray-400 mb-4">Tailored WordPress site for educational content.</p>
-                        <a href="https://www.oneeducation.org.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">One Education</h4>
+                        <p class="text-gray-400">Engineered a high-performance WordPress site specifically focused on efficient educational content delivery, enhancing digital learning for diverse audiences.</p>
+                        <a href="https://www.oneeducation.org.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    </div>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Alpha Academy</h4>
+                        <p class="text-gray-400">Developed a custom WordPress theme for an academy, providing a unique and intuitive learning environment, driving increased student retention and engagement.</p>
+                        <a href="https://www.alphaacademy.org/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
 
                     <!-- Hidden Websites (to be loaded) -->
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">Alpha Academy</h4>
-                        <p class="text-gray-400 mb-4">Custom WordPress theme for an academy.</p>
-                        <a href="https://www.alphaacademy.org/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">CourseGate</h4>
+                        <p class="text-gray-400">E-learning platform with custom functionalities.</p>
+                        <a href="https://coursegate.co.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">CourseGate</h4>
-                        <p class="text-gray-400 mb-4">E-learning platform with custom functionalities.</p>
-                        <a href="https://coursegate.co.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Euston College</h4>
+                        <p class="text-gray-400">Educational institution website.</p>
+                        <a href="https://www.eustoncollege.co.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">Euston College</h4>
-                        <p class="text-gray-400 mb-4">Educational institution website.</p>
-                        <a href="https://www.eustoncollege.co.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Training Express</h4>
+                        <p class="text-gray-400">Training provider's custom website.</p>
+                        <a href="https://www.trainingexpress.org.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">Training Express</h4>
-                        <p class="text-gray-400 mb-4">Training provider's custom website.</p>
-                        <a href="https://www.trainingexpress.org.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Janets.org.uk</h4>
+                        <p class="text-gray-400">Online learning portal.</p>
+                        <a href="https://www.janets.org.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">Janets.org.uk</h4>
-                        <p class="text-gray-400 mb-4">Online learning portal.</p>
-                        <a href="https://www.janets.org.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">LIBM.co.uk</h4>
+                        <p class="text-gray-400">Learning institution's website.</p>
+                        <a href="https://www.libm.co.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">LIBM.co.uk</h4>
-                        <p class="text-gray-400 mb-4">Learning institution's website.</p>
-                        <a href="https://www.libm.co.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">HFOnline.org</h4>
+                        <p class="text-gray-400">Online learning platform.</p>
+                        <a href="https://hfonline.org/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">HFOnline.org</h4>
-                        <p class="text-gray-400 mb-4">Online learning platform.</p>
-                        <a href="https://hfonline.org/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Skill-Up.org</h4>
+                        <p class="text-gray-400">Skill development website.</p>
+                        <a href="https://www.skill-up.org/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">Skill-Up.org</h4>
-                        <p class="text-gray-400 mb-4">Skill development website.</p>
-                        <a href="https://www.skill-up.org/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">iAccountancy.org</h4>
+                        <p class="text-gray-400">Accountancy training website.</p>
+                        <a href="https://iaccountancy.org/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">iAccountancy.org</h4>
-                        <p class="text-gray-400 mb-4">Accountancy training website.</p>
-                        <a href="https://iaccountancy.org/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">The Teachers Training</h4>
+                        <p class="text-gray-400">Training platform for teachers.</p>
+                        <a href="https://theteacherstraining.com/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">The Teachers Training</h4>
-                        <p class="text-gray-400 mb-4">Training platform for teachers.</p>
-                        <a href="https://theteacherstraining.com/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">The Animal Care</h4>
+                        <p class="text-gray-400">Website for animal care courses.</p>
+                        <a href="https://theanimalcare.org/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">The Animal Care</h4>
-                        <p class="text-gray-400 mb-4">Website for animal care courses.</p>
-                        <a href="https://theanimalcare.org/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">iBeauty Makeup</h4>
+                        <p class="text-gray-400">Beauty and makeup training website.</p>
+                        <a href="https://ibeautymakeup.co.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">iBeauty Makeup</h4>
-                        <p class="text-gray-400 mb-4">Beauty and makeup training website.</p>
-                        <a href="https://ibeautymakeup.co.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Visio Learning</h4>
+                        <p class="text-gray-400">Online learning platform.</p>
+                        <a href="https://www.visiolearning.co.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">Visio Learning</h4>
-                        <p class="text-gray-400 mb-4">Online learning platform.</p>
-                        <a href="https://www.visiolearning.co.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">St Paul's College</h4>
+                        <p class="text-gray-400">College website with custom functionalities.</p>
+                        <a href="https://www.stpaulscollege.co.uk/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">St Paul's College</h4>
-                        <p class="text-gray-400 mb-4">College website with custom functionalities.</p>
-                        <a href="https://www.stpaulscollege.co.uk/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg hidden more-websites">
-                        <h4 class="text-xl font-semibold mb-2 text-purple-300">CourseCloud.org</h4>
-                        <p class="text-gray-400 mb-4">Cloud-based course platform.</p>
-                        <a href="https://coursecloud.org/" target="_blank" class="text-blue-400 hover:underline">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card hidden more-websites">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">CourseCloud.org</h4>
+                        <p class="text-gray-400">Cloud-based course platform.</p>
+                        <a href="https://coursecloud.org/" target="_blank" class="text-blue-400 hover:underline mt-auto">Visit Website <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
                 </div>
                 <div class="text-center">
@@ -424,68 +533,107 @@
 
                 <!-- Custom WordPress Plugins & Contributions -->
                 <h3 class="text-3xl font-bold text-center mt-20 mb-8 text-gray-200">Custom WordPress Plugins & Contributions</h3>
+                <p class="text-center text-lg text-gray-300 mb-10">
+                    My expertise extends to developing powerful custom WordPress plugins that solve specific business needs and streamline workflows. I also actively contribute to the WordPress open-source community, demonstrating my deep understanding of the platform's core.
+                </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-yellow-300">WooCommerce Coupon Override Function</h4>
-                        <p class="text-gray-400 mb-4">Developed a function to override WooCommerce coupon codes for specific products, used across various e-learning websites.</p>
-                        <a href="https://github.com/iamrealfarhanbd/get-specifice-product-special-disocunt-php" target="_blank" class="text-blue-400 hover:underline">View on GitHub <i class="fab fa-github ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">WooCommerce Coupon Override Function</h4>
+                        <p class="text-gray-400">Developed a function to override WooCommerce coupon codes for specific products, enabling granular control over discounts and boosting sales conversions across various e-learning websites.</p>
+                        <a href="https://github.com/iamrealfarhanbd/get-specifice-product-special-disocunt-php" target="_blank" class="text-blue-400 hover:underline mt-auto">View on GitHub <i class="fab fa-github ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-yellow-300">Team Training Elementor Widget</h4>
-                        <p class="text-gray-400 mb-4">Created a custom Elementor widget to facilitate company team discounts on courses, simplifying the process for marketing teams.</p>
-                        <a href="https://github.com/iamrealfarhanbd/TeamTraning-Elementor-Widget" target="_blank" class="text-blue-400 hover:underline">View on GitHub <i class="fab fa-github ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Team Training Elementor Widget</h4>
+                        <p class="text-gray-400">Created a custom Elementor widget to facilitate dynamic company team discounts on courses, significantly simplifying the process for marketing teams and increasing B2B sales.</p>
+                        <a href="https://github.com/iamrealfarhanbd/TeamTraning-Elementor-Widget" target="_blank" class="text-blue-400 hover:underline mt-auto">View on GitHub <i class="fab fa-github ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-yellow-300">FAMC Material Cards Plugin</h4>
-                        <p class="text-gray-400 mb-4">Developed a plugin to create customizable course cards for all course pages, allowing marketing teams to easily design cards without coding.</p>
-                        <a href="https://github.com/iamrealfarhanbd/famc-material-cards.php" target="_blank" class="text-blue-400 hover:underline">View on GitHub <i class="fab fa-github ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">FAMC Material Cards Plugin</h4>
+                        <p class="text-gray-400">Engineered a robust plugin for creating customizable course cards across all course pages, empowering marketing teams to design visually appealing cards effortlessly without any coding, thus enhancing content presentation.</p>
+                        <a href="https://github.com/iamrealfarhanbd/famc-material-cards.php" target="_blank" class="text-blue-400 hover:underline mt-auto">View on GitHub <i class="fab fa-github ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-yellow-300">Ninja Tables Plugin Contribution</h4>
-                        <p class="text-gray-400 mb-4">Contributed to the development and support of the popular Ninja Tables WordPress plugin while working at WP Manage Ninja.</p>
-                        <a href="https://wordpress.org/plugins/ninja-tables/" target="_blank" class="text-blue-400 hover:underline">View Plugin <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Ninja Tables Plugin Contribution</h4>
+                        <p class="text-gray-400">Actively contributed to the development and provided in-depth technical support for the popular Ninja Tables WordPress plugin, ensuring its high performance and user satisfaction.</p>
+                        <a href="https://wordpress.org/plugins/ninja-tables/" target="_blank" class="text-blue-400 hover:underline mt-auto">View Plugin <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-yellow-300">Ninja Toastify Plugin (My Own)</h4>
-                        <p class="text-gray-400 mb-4">Developed my own WordPress plugin, Ninja Toastify, to showcase my plugin development skills and expertise.</p>
-                        <a href="https://wordpress.org/plugins/ninja-toastify/" target="_blank" class="text-blue-400 hover:underline">View Plugin <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Ninja Toastify Plugin (My Own)</h4>
+                        <p class="text-gray-400">Designed and developed my own WordPress plugin, Ninja Toastify, demonstrating my advanced plugin development capabilities and ability to create innovative solutions.</p>
+                        <a href="https://wordpress.org/plugins/ninja-toastify/" target="_blank" class="text-blue-400 hover:underline mt-auto">View Plugin <i class="fas fa-external-link-alt ml-1"></i></a>
                         <span class="block text-sm text-gray-500 mt-2">
                             <a href="https://github.com/iamrealfarhanbd/ninja-toastify-plugin" target="_blank" class="text-blue-400 hover:underline">View Code on GitHub <i class="fab fa-github ml-1"></i></a>
                         </span>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-yellow-300">WordPress Core Contributor</h4>
-                        <p class="text-gray-400 mb-4">Proud to be a WordPress core contributor with a server version badge, demonstrating my deep involvement in the WordPress open-source community.</p>
-                        <a href="https://profiles.wordpress.org/iamfarhan09/" target="_blank" class="text-blue-400 hover:underline">View WordPress Profile <i class="fas fa-external-link-alt ml-1"></i></a>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">WordPress Core Contributor</h4>
+                        <p class="text-gray-400">Proud to be a WordPress core contributor with a server version badge, signifying my direct involvement and commitment to advancing the WordPress open-source project.</p>
+                        <a href="https://profiles.wordpress.org/iamfarhan09/" target="_blank" class="text-blue-400 hover:underline mt-auto">View WordPress Profile <i class="fas fa-external-link-alt ml-1"></i></a>
                     </div>
                 </div>
 
                 <!-- MERN Stack Projects Subsection -->
-                <h3 class="text-3xl font-bold text-center mt-20 mb-8 text-gray-200">MERN Stack Projects</h3>
+                <h3 class="text-3xl font-bold text-center mt-20 mb-8 text-gray-200">Full-Stack (MERN) Projects</h3>
                 <p class="text-center text-lg text-gray-300 mb-10">
-                    Beyond WordPress, I have extensive experience in MERN stack development, building robust and scalable web applications.
+                    My expertise extends beyond WordPress into robust MERN stack development, where I build scalable, high-performance web and mobile applications from concept to deployment. I leverage modern JavaScript frameworks and backend technologies to deliver seamless user experiences and powerful functionalities.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-green-300">Ebazar - E-commerce Platform</h4>
-                        <p class="text-gray-400 mb-4">A full-stack e-commerce platform with secure authentication, admin panel, and integrated payment system.</p>
-                        <p class="text-sm text-gray-500">Technologies: React, React Bootstrap, Firebase, Node, Express, JWT, MongoDB.</p>
-                        <a href="https://github.com/iamrealfarhanbd" target="_blank" class="text-blue-400 hover:underline mt-4 block">View on GitHub <i class="fab fa-github ml-1"></i></a>
-                        <p class="text-sm text-gray-500 mt-2"><em>Specific live/repo links not provided in resume, linking to general GitHub.</em></p>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Ebazar - E-commerce Platform</h4>
+                        <p class="text-gray-400">A high-performance full-stack e-commerce platform handling thousands of active users and hundreds of weekly orders, with secure authentication and integrated payment systems.</p>
+                        <div class="flex flex-wrap gap-4 mt-auto">
+                            <a href="https://ebazar.onrender.com/" target="_blank" class="text-blue-400 hover:underline">Live Link <i class="fas fa-external-link-alt ml-1"></i></a>
+                            <a href="https://github.com/iamrealfarhanbd/Ebazar" target="_blank" class="text-blue-400 hover:underline">GitHub <i class="fab fa-github ml-1"></i></a>
+                        </div>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-green-300">Mbazar - E-commerce Mobile App</h4>
-                        <p class="text-gray-400 mb-4">A full-stack, mobile-friendly e-commerce application with smooth user authentication and product management.</p>
-                        <p class="text-sm text-gray-500">Technologies: React Native, React Bootstrap, Firebase.</p>
-                        <a href="https://github.com/iamrealfarhanbd" target="_blank" class="text-blue-400 hover:underline mt-4 block">View on GitHub <i class="fab fa-github ml-1"></i></a>
-                        <p class="text-sm text-gray-500 mt-2"><em>Specific app/repo links not provided in resume, linking to general GitHub.</em></p>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Mbazar - E-commerce Mobile App</h4>
+                        <p class="text-gray-400">A feature-rich, mobile-friendly e-commerce application built with React Native, enhancing user retention and providing smooth product management for hundreds of listings.</p>
+                        <div class="flex flex-wrap gap-4 mt-auto">
+                            <a href="https://raw.githubusercontent.com/iamrealfarhanbd/Mbazar-2.0/main/Mbazar.apk" target="_blank" class="text-blue-400 hover:underline">App Apk <i class="fas fa-download ml-1"></i></a>
+                            <a href="https://github.com/iamrealfarhanbd/Mbazar-2.0" target="_blank" class="text-blue-400 hover:underline">GitHub <i class="fab fa-github ml-1"></i></a>
+                            <a href="https://user-images.githubusercontent.com/56694327/143988864-17764e4d-e1f8-41f9-8669-c5e0a56f0591.mp4" target="_blank" class="text-blue-400 hover:underline">Intro Video <i class="fas fa-video ml-1"></i></a>
+                        </div>
                     </div>
-                    <div class="animated-border-card p-6 rounded-xl shadow-lg">
-                        <h4 class="text-xl font-semibold mb-2 text-green-300">Tool Shop - Tools Manufacturer Website</h4>
-                        <p class="text-gray-400 mb-4">A full-stack tools manufacturer's website supporting multiple manufacturers, streamlining order processing.</p>
-                        <p class="text-sm text-gray-500">Technologies: React, Tailwind, daisyUI, Firebase, Node, Express, JWT, MongoDB.</p>
-                        <a href="https://github.com/iamrealfarhanbd" target="_blank" class="text-blue-400 hover:underline mt-4 block">View on GitHub <i class="fab fa-github ml-1"></i></a>
-                        <p class="text-sm text-gray-500 mt-2"><em>Specific live/repo links not provided in resume, linking to general GitHub.</em></p>
+                    <div class="animated-border-card">
+                        <h4 class="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Tool Shop - Tools Manufacturer Website</h4>
+                        <p class="text-gray-400">A robust full-stack website for tool manufacturing, streamlining order processing and significantly reducing administrative workload with role-based access and secure payment systems.</p>
+                        <div class="flex flex-wrap gap-4 mt-auto">
+                            <a href="https://toolshop.onrender.com/" target="_blank" class="text-blue-400 hover:underline">Live Link <i class="fas fa-external-link-alt ml-1"></i></a>
+                            <a href="https://github.com/iamrealfarhanbd/ToolShop-Client" target="_blank" class="text-blue-400 hover:underline">GitHub (Client) <i class="fab fa-github ml-1"></i></a>
+                            <a href="https://github.com/iamrealfarhanbd/ToolShop-Server" target="_blank" class="text-blue-400 hover:underline">GitHub (Server) <i class="fab fa-github ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documents Section (Resume & Cover Letter) -->
+        <section id="documents" class="py-20 px-6 gradient-bg scroll-reveal">
+            <div class="container mx-auto max-w-5xl text-center">
+                <h2 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-purple-500">My Documents</h2>
+                <p class="text-lg text-gray-300 mb-10">Access my professional documents for a detailed overview of my experience and qualifications.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Resume Card -->
+                    <div class="animated-border-card">
+                        <h3 class="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400"><i class="fas fa-file-alt mr-2"></i> My Resume</h3>
+                        <p class="text-gray-400">Download my comprehensive resume outlining my professional journey, technical proficiencies, and educational background.</p>
+                        <div class="flex gap-4 mt-auto justify-center"> <!-- Added justify-center here -->
+                            <a href="Farhan_Ahmed_Full_stack_developer_Resume.pdf" download="Farhan_Ahmed_Full_stack_developer_Resume.pdf" class="document-button download">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Cover Letter Card -->
+                    <div class="animated-border-card">
+                        <h3 class="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400"><i class="fas fa-envelope-open-text mr-2"></i> My Cover Letter</h3>
+                        <p class="text-gray-400">Download my cover letter to understand my motivations, commitment, and how my skills align with your needs.</p>
+                        <div class="flex gap-4 mt-auto justify-center"> <!-- Added justify-center here -->
+                            <a href="Farhan_Ahmed_Cover_letter.pdf" download="Farhan_Ahmed_Cover_letter.pdf" class="document-button download">
+                                <i class="fas fa-download"></i> Download Cover Letter
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -496,30 +644,19 @@
             <div class="container mx-auto max-w-xl text-center">
                 <h2 class="text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-500">Get In Touch</h2>
                 <p class="text-lg text-gray-300 mb-8">
-                    I'm always open to new opportunities and collaborations. Feel free to reach out!
+                    I'm always open to new opportunities and collaborations. Reach out using my contact details below.
                 </p>
                 <div class="bg-gray-800 bg-opacity-70 backdrop-blur-sm p-8 rounded-xl shadow-lg animated-border-card">
-                    <form action="#" method="POST" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-left text-gray-300 text-sm font-semibold mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none" placeholder="Your Name" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-left text-gray-300 text-sm font-semibold mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none" placeholder="your.email@example.com" required>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-left text-gray-300 text-sm font-semibold mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none" placeholder="Your message..." required></textarea>
-                        </div>
-                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full shadow-lg hover:from-purple-700 hover:to-pink-700 transition duration-300 transform hover:scale-105">
-                            Send Message
-                        </button>
-                    </form>
-                    <div class="mt-8 text-gray-400">
-                        <p>Mobile: <a href="tel:+447564616134" class="text-blue-400 hover:underline">07564616134</a></p>
-                        <p>Email: <a href="mailto:iamfarhan09@gmail.com" class="text-blue-400 hover:underline">iamfarhan09@gmail.com</a></p>
-                        <p>Address: OX10 OBS, Wallingford, United Kingdom</p>
+                    <!-- Removed the form element as per user request to use a different style -->
+                    <div class="flex flex-col items-center space-y-4 text-gray-400">
+                        <p class="text-lg">Mobile: 2025 <a href="tel:+447564616134" class="text-blue-400 hover:underline">07564616134</a></p>
+                        <p class="flex items-center justify-center gap-2 text-lg">
+                            Email: Code <span id="emailAddress" class="text-blue-400">iamfarhan09@gmail.com</span>
+                            <button id="copyEmailBtn" class="copy-email-btn">
+                                <i class="fas fa-copy"></i> Copy Email
+                            </button>
+                        </p>
+                        <p class="text-lg">Address: OX10 OBS, Wallingford, United Kingdom</p>
                     </div>
                 </div>
             </div>
@@ -551,6 +688,9 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const backToTopButton = document.getElementById('back-to-top');
+            const copyEmailBtn = document.getElementById('copyEmailBtn');
+            const emailAddressSpan = document.getElementById('emailAddress');
+
 
             // Toggle mobile menu visibility
             mobileMenuButton.addEventListener('click', () => {
@@ -622,6 +762,33 @@
                     behavior: 'smooth'
                 });
             });
+
+            // Copy Email to Clipboard functionality
+            if (copyEmailBtn && emailAddressSpan) {
+                copyEmailBtn.addEventListener('click', () => {
+                    const emailToCopy = emailAddressSpan.textContent;
+                    // Use document.execCommand('copy') for better iframe compatibility
+                    const textarea = document.createElement('textarea');
+                    textarea.value = emailToCopy;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        copyEmailBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(() => {
+                            copyEmailBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Email';
+                        }, 2000); // Reset button text after 2 seconds
+                    } catch (err) {
+                        console.error('Failed to copy email: ', err);
+                        copyEmailBtn.innerHTML = '<i class="fas fa-times"></i> Failed!';
+                        setTimeout(() => {
+                            copyEmailBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Email';
+                        }, 2000);
+                    } finally {
+                        document.body.removeChild(textarea);
+                    }
+                });
+            }
         });
     </script>
 </body>
